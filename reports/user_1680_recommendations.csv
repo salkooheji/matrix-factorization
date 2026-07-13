@@ -1,0 +1,21 @@
+model,rank,movie_id,title,predicted_rating
+SVD,1,1307,When Harry Met Sally... (1989),5.0
+SVD,2,1278,Young Frankenstein (1974),5.0
+SVD,3,2028,Saving Private Ryan (1998),5.0
+SVD,4,1210,Star Wars: Episode VI - Return of the Jedi (1983),5.0
+SVD,5,3114,Toy Story 2 (1999),5.0
+SVD,6,2762,"Sixth Sense, The (1999)",5.0
+SVD,7,2115,Indiana Jones and the Temple of Doom (1984),4.876
+SVD,8,3578,Gladiator (2000),4.793
+SVD,9,2352,"Big Chill, The (1983)",4.762
+SVD,10,2968,Time Bandits (1981),4.663
+PMF,1,3245,I Am Cuba (Soy Cuba/Ya Kuba) (1964),4.829
+PMF,2,557,Mamma Roma (1962),4.821
+PMF,3,53,Lamerica (1994),4.819
+PMF,4,3739,Trouble in Paradise (1932),4.761
+PMF,5,1278,Young Frankenstein (1974),4.758
+PMF,6,2905,Sanjuro (1962),4.736
+PMF,7,1147,When We Were Kings (1996),4.731
+PMF,8,787,"Gate of Heavenly Peace, The (1995)",4.725
+PMF,9,1423,Hearts and Minds (1996),4.668
+PMF,10,1214,Alien (1979),4.664

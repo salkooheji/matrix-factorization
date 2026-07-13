@@ -123,8 +123,11 @@ pmf_bundle = {"predictions": pmf_matrix, "user_index": user_index,
 train_counts = train_df["user_id"].value_counts()
 user_a = int(train_counts.index[0])
 user_b = int(train_counts.index[len(train_counts) // 2])
-user_c = int(known["user_id"].value_counts().index[0])
+test_counts = known["user_id"].value_counts()
+user_c = int(next(u for u in test_counts.index if u not in (user_a, user_b)))
 eval_users = [user_a, user_b, user_c]
+with open("reports/eval_users.json", "w") as f:
+    json.dump(eval_users, f)
 print(f"Evaluated users: {eval_users}", flush=True)
 for uid in eval_users:
     path = save_user_recommendations(uid, svd_bundle, pmf_bundle)
@@ -209,4 +212,3 @@ plt.close()
 print("\nAll artifacts generated. Final metrics:", flush=True)
 with open("reports/model_metrics.json") as f:
     print(json.dumps(json.load(f), indent=2))
-    

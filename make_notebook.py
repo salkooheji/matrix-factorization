@@ -164,9 +164,8 @@ user_index = pd.Index(np.load("processed/user_index.npy"))
 
 known = test_df[test_df.user_id.isin(user_index) & test_df.movie_id.isin(movie_index)]
 train_counts = train_df.user_id.value_counts()
-eval_users = [int(train_counts.index[0]),
-              int(train_counts.index[len(train_counts) // 2]),
-              int(known.user_id.value_counts().index[0])]
+with open("reports/eval_users.json") as f:
+    eval_users = json.load(f)
 
 for uid in eval_users:
     u = known[known.user_id == uid]
@@ -180,19 +179,22 @@ for uid in eval_users:
           f"rating std {u.rating.std():.2f}")"""),
 
     md("""**Why one train user is predicted better than the other (local
-interpretability).** The very active user has hundreds of training
-ratings, so their latent taste vector is estimated from abundant evidence
-and predictions for them are accurate. The median-activity user
-contributes far fewer ratings: their factor vector is pulled toward zero
-by regularization, so predictions fall back toward the user/item biases
-(i.e. "popular average"), which costs accuracy - especially when the
-user's actual ratings are highly variable (large rating std). In short:
-recommendation accuracy grows with the amount and consistency of a user's
-history, which is the classic cold-ish-start behaviour of matrix
-factorization. For each user, a movie is recommended because the dot
-product of their taste vector with that movie's latent vector (plus the
-movie's bias) is high - the recommendation CSVs and the dashboard's
-comparison chart make this visible per user."""),
+interpretability).** Counter-intuitively, the median-activity user (1287,
+76 train ratings, PMF RMSE 0.685) is predicted better than the power user
+(4169, 1864 train ratings, PMF RMSE 0.740). Volume of history is not the
+only driver of accuracy. The power user has rated deep into the catalogue's
+long tail, so many of their held-out movies are rare titles whose latent
+vectors are estimated from little data (and shrunk by regularization),
+while the median user's held-out ratings sit mostly on well-known movies
+the model knows extremely well. Note also that user 1287 has only 18
+held-out ratings, so their RMSE estimate is itself noisy. The test user
+(1680) is the hardest for both models: their rating standard deviation is
+the highest (1.15) - an inconsistent rater is intrinsically hard to
+predict, since even movies with similar latent profiles receive very
+different scores from them. For each user, a movie is recommended because
+the dot product of their taste vector with that movie's latent vector
+(plus the movie's bias) is high - the recommendation CSVs and the
+dashboard's comparison chart make this visible per user."""),
 
     md("""## 5. Conclusions
 
