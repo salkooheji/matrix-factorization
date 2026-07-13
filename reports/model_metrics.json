@@ -1,5 +1,6 @@
 {
   "SVD_RMSE": 0.8972,
-  "PMF_RMSE": 0.899,
-  "PMF_vs_SVD_improvement_%": -0.1986
+  "PMF_RMSE": 0.8499,
+  "PMF_vs_SVD_improvement_%": 5.2651,
+  "Benchmark_RMSE": 0.9309
 }

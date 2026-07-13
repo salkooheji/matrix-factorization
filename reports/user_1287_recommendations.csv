@@ -1,0 +1,21 @@
+model,rank,movie_id,title,predicted_rating
+SVD,1,318,"Shawshank Redemption, The (1994)",4.817
+SVD,2,858,"Godfather, The (1972)",4.755
+SVD,3,1198,Raiders of the Lost Ark (1981),4.735
+SVD,4,2019,Seven Samurai (The Magnificent Seven) (Shichinin no samurai) (1954),4.704
+SVD,5,260,Star Wars: Episode IV - A New Hope (1977),4.7
+SVD,6,750,Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963),4.643
+SVD,7,904,Rear Window (1954),4.625
+SVD,8,922,Sunset Blvd. (a.k.a. Sunset Boulevard) (1950),4.597
+SVD,9,912,Casablanca (1942),4.592
+SVD,10,1207,To Kill a Mockingbird (1962),4.59
+PMF,1,2905,Sanjuro (1962),4.8420000076293945
+PMF,2,858,"Godfather, The (1972)",4.841000080108643
+PMF,3,3245,I Am Cuba (Soy Cuba/Ya Kuba) (1964),4.789000034332275
+PMF,4,1198,Raiders of the Lost Ark (1981),4.769999980926514
+PMF,5,260,Star Wars: Episode IV - A New Hope (1977),4.763999938964844
+PMF,6,318,"Shawshank Redemption, The (1994)",4.754000186920166
+PMF,7,2019,Seven Samurai (The Magnificent Seven) (Shichinin no samurai) (1954),4.734000205993652
+PMF,8,1204,Lawrence of Arabia (1962),4.72599983215332
+PMF,9,904,Rear Window (1954),4.724999904632568
+PMF,10,1250,"Bridge on the River Kwai, The (1957)",4.689000129699707

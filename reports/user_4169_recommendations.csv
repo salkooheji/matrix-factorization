@@ -1,0 +1,21 @@
+model,rank,movie_id,title,predicted_rating
+SVD,1,1097,E.T. the Extra-Terrestrial (1982),5.0
+SVD,2,1207,To Kill a Mockingbird (1962),5.0
+SVD,3,1204,Lawrence of Arabia (1962),5.0
+SVD,4,2700,"South Park: Bigger, Longer and Uncut (1999)",5.0
+SVD,5,1267,"Manchurian Candidate, The (1962)",5.0
+SVD,6,2706,American Pie (1999),5.0
+SVD,7,910,Some Like It Hot (1959),5.0
+SVD,8,1960,"Last Emperor, The (1987)",4.998
+SVD,9,953,It's a Wonderful Life (1946),4.928
+SVD,10,1193,One Flew Over the Cuckoo's Nest (1975),4.886
+PMF,1,1207,To Kill a Mockingbird (1962),4.925000190734863
+PMF,2,3022,"General, The (1927)",4.756999969482422
+PMF,3,953,It's a Wonderful Life (1946),4.732999801635742
+PMF,4,3338,For All Mankind (1989),4.7220001220703125
+PMF,5,3245,I Am Cuba (Soy Cuba/Ya Kuba) (1964),4.7170000076293945
+PMF,6,1148,"Wrong Trousers, The (1993)",4.716000080108643
+PMF,7,670,"World of Apu, The (Apur Sansar) (1959)",4.698999881744385
+PMF,8,1204,Lawrence of Arabia (1962),4.695000171661377
+PMF,9,3462,Modern Times (1936),4.690999984741211
+PMF,10,2503,"Apple, The (Sib) (1998)",4.684000015258789
