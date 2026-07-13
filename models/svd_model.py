@@ -8,20 +8,29 @@ import pandas as pd
 from scipy.sparse.linalg import svds
 
 
-def train_svd(normalized, user_means, k=50):
-    """Factorize the normalized user-item matrix with truncated SVD.
+def train_svd(matrix, k=50, damping=25.0):
+    """Factorize the user-item matrix with truncated SVD over baseline residuals.
 
-    Decomposes the matrix into U (user factors), sigma (singular values)
-    and Vt (movie factors), keeping only the k strongest latent factors.
-    Reconstruction gives a dense predicted-deviation matrix; adding back
-    each user's mean converts it to the 1-5 rating scale.
+    A baseline rating is estimated first: global mean + regularized user
+    bias + regularized item bias. SVD then factorizes only the residuals
+    (how each rating deviates from its baseline), keeping the k strongest
+    latent factors. The damping term shrinks biases of users/movies with
+    few ratings toward zero (regularization).
     """
-    matrix = normalized.values.astype(np.float64)
-    U, sigma, Vt = svds(matrix, k=k)
-    predictions = U @ np.diag(sigma) @ Vt + user_means.values.reshape(-1, 1)
+    mu = matrix.stack().mean()
+    user_counts = matrix.count(axis=1)
+    item_counts = matrix.count(axis=0)
+    user_bias = matrix.sub(mu).sum(axis=1) / (damping + user_counts)
+    item_bias = matrix.sub(mu).sub(user_bias, axis=0).sum(axis=0) / (
+        damping + item_counts
+    )
+    baseline = mu + np.add.outer(user_bias.values, item_bias.values)
+    residuals = np.nan_to_num(matrix.values - baseline)
+    U, sigma, Vt = svds(residuals, k=k)
+    predictions = baseline + U @ np.diag(sigma) @ Vt
     predictions = np.clip(predictions, 1, 5)
     return pd.DataFrame(
-        predictions, index=normalized.index, columns=normalized.columns
+        predictions, index=matrix.index, columns=matrix.columns
     )
 
 
@@ -75,7 +84,7 @@ if __name__ == "__main__":
     # Parameter tuning: try several latent dimensions
     best_k, best_rmse, best_preds = None, np.inf, None
     for k in [10, 20, 30, 50]:
-        pred_df = train_svd(normalized, user_means, k=k)
+        pred_df = train_svd(matrix, k=k)
         rmse = compute_rmse(pred_df, test_df)
         print(f"k={k:3d} -> test RMSE = {rmse:.4f}")
         if rmse < best_rmse:
