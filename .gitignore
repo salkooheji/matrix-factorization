@@ -1,0 +1,9 @@
+# Raw dataset (too large for git)
+data/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.venv/
